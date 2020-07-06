@@ -1,7 +1,7 @@
 " VIM Configuration File
 " Description: created for C/C++ development, but is useful for other things as well
 " Author: Bhaskar Tallamraju
-"
+" Last updated: July 06 2020
 
 " I like the desert theme the best
 color desert
