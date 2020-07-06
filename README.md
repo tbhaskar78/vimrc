@@ -8,4 +8,6 @@
 
 Hope you find this useful!
 
-### ![STL Completion](https://github.com/tbhaskar78/vimrc/blob/gh-pages/images/stlCompletion.png)
+### STL Completion ![STL Completion](https://github.com/tbhaskar78/vimrc/blob/gh-pages/images/stlCompletion.png)
+
+### local C++ Completion ![Local Completion](https://github.com/tbhaskar78/vimrc/blob/gh-pages/images/localCompletion.png)
