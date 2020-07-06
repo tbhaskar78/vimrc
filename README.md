@@ -8,6 +8,6 @@
 
 Hope you find this useful!
 
-### STL Completion ![STL Completion](https://github.com/tbhaskar78/vimrc/blob/master/images/stlCompletion.png)
+### Example of STL Completion using clang_complete ![STL Completion](https://github.com/tbhaskar78/vimrc/blob/master/images/stlCompletion.png)
 
-### local C++ Completion ![Local Completion](https://github.com/tbhaskar78/vimrc/blob/master/images/localCompletion.png)
+### Example of local C++ Completion using clang_complete ![Local Completion](https://github.com/tbhaskar78/vimrc/blob/master/images/localCompletion.png)
