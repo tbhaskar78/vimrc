@@ -8,4 +8,4 @@
 
 Hope you find this useful!
 
-### ![STL Completion](https://github.com/tbhaskar78/vimrc/images/stlCompletion.png)
+### ![STL Completion](https://github.com/tbhaskar78/vimrc/blob/gh-pages/images/stlCompletion.png)
