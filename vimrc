@@ -33,6 +33,8 @@ set termencoding=utf-8
 
 " disable vi compatibility (emulation of old bugs)
 set nocompatible
+"enable filetype
+filetype plugin on
 " use indentation of previous line
 set autoindent
 " use intelligent indentation for C
@@ -50,34 +52,38 @@ set showmatch
 " intelligent comments
 set comments=sl:/*,mb:\ *,elx:\ */
 
-" 1. Install OmniCppComplete like described on http://vim.wikia.com/wiki/C++_code_completion
-" 2. Install ctags
-" 3. Download and Install std C++ tags from here https://www.vim.org/scripts/script.php?script_id=2358 
-set nocp
-filetype plugin on
-" This offers intelligent C++ completion when typing ‘.’ ‘->’ or <C-o>
-" Load standard tag files
-set tags=~/.vim/tags
-set tags+=~/.vim/tags/cpp
+"enable python syntax
+let python_highlight_all = 1
+
+" Auto complete using clang_complete
+" 1. Install libclang-dev
+" 2. Ensure python 2 support is enabled in vim (otherwise build vim with it)
+" 3. Install clang_complete from here https://www.vim.org/scripts/script.php?script_id=3302 
+" 4. Install libclang1 in ubuntu or libclang in other distro; ensure libclang.so is available
+let g:clang_user_options="-std=c++0x"
 
 " Install DoxygenToolkit from http://www.vim.org/scripts/script.php?script_id=987
-let g:DoxygenToolkit_authorName="Joe Smith  <JoeSmith@test.com>"
+let g:DoxygenToolkit_authorName="John Smith  <John@test.com>"
 
 " Enhanced keyboard mappings
-" took this from Gerhard Gappmeier's vimrc
 " switch between header/source with F4
 map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
-" recreate tags file with F5
+
+" Build gcc, g++ or python code from here <Shift F8>
+autocmd FileType c nnoremap <buffer> <S-F8> :update<bar>!gcc % && ./a.out<CR>
+autocmd FileType cpp nnoremap <buffer> <S-F8> :update<bar>!g++ % && ./a.out<CR>
+autocmd FileType python nnoremap <buffer> <S-F8> :update<bar>!sudo python3 %<CR>
+
+" Auto build using make with <F5>
+map <F5> :make<CR>
+" Auto build using make with <S-F7>
+map <S-F9> :make clean all<CR>
+" recreate tags file with <F7>, needs ctags installed
 map <F7> :!ctags -R –c++-kinds=+p –fields=+iaS –extra=+q .<CR>
 " create doxygen comment with <F6>
 map <F6> :Dox<CR>
-" build using makeprg with <F5>
-map <F5> :make<CR>
-" build using makeprg with <S-F7>
-map <S-F10> :make clean all<CR>
 " goto definition with F12
-map <F11> <C-]>
-map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+map <S-F12> <C-]>
 
 if has("autocmd")
   " When editing a file, always jump to the last known cursor position.
