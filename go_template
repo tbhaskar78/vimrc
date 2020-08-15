@@ -1,0 +1,22 @@
+:insert
+/****************************************
+
+* File Name :
+
+* Creation Date :
+
+* Last Modified :
+
+* Created By :  John Doe
+
+*****************************************/
+package main
+
+import (
+    "fmt"
+)
+
+func main() {
+
+}
+.
