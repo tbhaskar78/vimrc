@@ -5,6 +5,7 @@
    - I use the desert theme, which I absolutely love
    - I have mapped keys for DOXYGEN
    - Mapped keys for building based on C/C++/Python filetypes
+   - Added header for C and go. Copy c_header and go_template under ~/.vim and modify the autocmd in vimrc as needed 
 
 Hope you find this useful!
 
