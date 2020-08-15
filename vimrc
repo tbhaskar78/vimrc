@@ -85,6 +85,21 @@ map <F6> :Dox<CR>
 " goto definition with F12
 map <S-F12> <C-]>
 
+" auto cmd to add c header
+autocmd bufnewfile *.c so ~/.vim/c_header
+autocmd bufnewfile *.c exe "1," . 10 . "g/File Name :.*/s//File Name : " .expand("%")
+autocmd bufnewfile *.c exe "1," . 10 . "g/Creation Date :.*/s//Creation Date : " .strftime("%d-%m-%Y")
+autocmd Bufwritepre,filewritepre *.c execute "normal ma"
+autocmd Bufwritepre,filewritepre *.c exe "1," . 10 . "g/Last Modified :.*/s/Last Modified :.*/Last Modified : " .strftime("%c")
+autocmd bufwritepost,filewritepost *.c execute "normal `a"
+" auto cmd to add go header
+autocmd bufnewfile *.go so ~/.vim/go_template
+autocmd bufnewfile *.go exe "1," . 10 . "g/File Name :.*/s//File Name : " .expand("%")
+autocmd bufnewfile *.go exe "1," . 10 . "g/Creation Date :.*/s//Creation Date : " .strftime("%d-%m-%Y")
+autocmd Bufwritepre,filewritepre *.go execute "normal ma"
+autocmd Bufwritepre,filewritepre *.go exe "1," . 10 . "g/Last Modified :.*/s/Last Modified :.*/Last Modified : " .strftime("%c")
+autocmd bufwritepost,filewritepost *.go execute "normal `a"
+
 if has("autocmd")
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
