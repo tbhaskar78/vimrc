@@ -78,6 +78,7 @@ autocmd FileType c nnoremap <buffer> <S-F9> :update<bar>!gcc -g -Werror % && gdb
 autocmd FileType cpp nnoremap <buffer> <S-F8> :update<bar>!g++ -Werror -std=c++17 % && ./a.out<CR>
 autocmd FileType cpp nnoremap <buffer> <S-F9> :update<bar>!g++ -g -Werror % && gdb ./a.out<CR>
 autocmd FileType python nnoremap <buffer> <S-F8> :update<bar>!sudo python3 %<CR>
+autocmd FileType go  nnoremap <buffer> <S-F8> :update<bar>!go build %<CR>
 
 " Auto build using make with <F5>
 map <F5> :make<CR>
