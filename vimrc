@@ -51,7 +51,10 @@ set number
 set showmatch
 " intelligent comments
 set comments=sl:/*,mb:\ *,elx:\ */
-
+" c++ indent
+set cindent
+set cinoptions=g0
+retab
 "enable python syntax
 let python_highlight_all = 1
 
@@ -70,8 +73,10 @@ let g:DoxygenToolkit_authorName="John Smith  <John@test.com>"
 map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 
 " Build gcc, g++ or python code from here <Shift F8>
-autocmd FileType c nnoremap <buffer> <S-F8> :update<bar>!gcc % && ./a.out<CR>
-autocmd FileType cpp nnoremap <buffer> <S-F8> :update<bar>!g++ % && ./a.out<CR>
+autocmd FileType c nnoremap <buffer> <S-F8> :update<bar>!gcc -Werror % && ./a.out<CR>
+autocmd FileType c nnoremap <buffer> <S-F9> :update<bar>!gcc -g -Werror % && gdb ./a.out<CR>
+autocmd FileType cpp nnoremap <buffer> <S-F8> :update<bar>!g++ -Werror -std=c++17 % && ./a.out<CR>
+autocmd FileType cpp nnoremap <buffer> <S-F9> :update<bar>!g++ -g -Werror % && gdb ./a.out<CR>
 autocmd FileType python nnoremap <buffer> <S-F8> :update<bar>!sudo python3 %<CR>
 
 " Auto build using make with <F5>
@@ -92,6 +97,13 @@ autocmd bufnewfile *.c exe "1," . 10 . "g/Creation Date :.*/s//Creation Date : "
 autocmd Bufwritepre,filewritepre *.c execute "normal ma"
 autocmd Bufwritepre,filewritepre *.c exe "1," . 10 . "g/Last Modified :.*/s/Last Modified :.*/Last Modified : " .strftime("%c")
 autocmd bufwritepost,filewritepost *.c execute "normal `a"
+" auto cmd to add cpp header
+autocmd bufnewfile *.cpp so ~/.vim/cpp_header
+autocmd bufnewfile *.cpp exe "1," . 10 . "g/File Name :.*/s//File Name : " .expand("%")
+autocmd bufnewfile *.cpp exe "1," . 10 . "g/Creation Date :.*/s//Creation Date : " .strftime("%d-%m-%Y")
+autocmd Bufwritepre,filewritepre *.cpp execute "normal ma"
+autocmd Bufwritepre,filewritepre *.cpp exe "1," . 10 . "g/Last Modified :.*/s/Last Modified :.*/Last Modified : " .strftime("%c")
+autocmd bufwritepost,filewritepost *.cpp execute "normal `a"
 " auto cmd to add go header
 autocmd bufnewfile *.go so ~/.vim/go_template
 autocmd bufnewfile *.go exe "1," . 10 . "g/File Name :.*/s//File Name : " .expand("%")
@@ -99,6 +111,12 @@ autocmd bufnewfile *.go exe "1," . 10 . "g/Creation Date :.*/s//Creation Date : 
 autocmd Bufwritepre,filewritepre *.go execute "normal ma"
 autocmd Bufwritepre,filewritepre *.go exe "1," . 10 . "g/Last Modified :.*/s/Last Modified :.*/Last Modified : " .strftime("%c")
 autocmd bufwritepost,filewritepost *.go execute "normal `a"
+"execute retab  on write
+autocmd BufWritePost,filewritepost *.c :retab
+autocmd BufWritePost,filewritepost *.py :retab
+autocmd BufWritePost,filewritepost *.go :retab
+autocmd BufWritePost,filewritepost *.cpp :retab
+autocmd BufWritePost,filewritepost *.js :retab
 
 if has("autocmd")
   " When editing a file, always jump to the last known cursor position.
